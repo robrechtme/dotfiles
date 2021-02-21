@@ -1,0 +1,16 @@
+[include]
+  path = ~/.gitconfig.local
+[credential]
+	helper = store
+[commit]
+	gpgsign = true
+[pull]
+	rebase = true
+[diff]
+	renames = copies
+[help]
+	autocorrect = 1
+[merge]
+	log = true
+[push]
+	default = simple
