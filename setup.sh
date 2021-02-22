@@ -1,6 +1,12 @@
 #! /bin/bash
 set -e
 
+if [ `whoami` != 'root' ]
+  then
+    echo "You must be root to do this."
+    exit
+fi
+
 cd "$(dirname "${BASH_SOURCE[0]}")";
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -9,8 +15,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   brew install exa
   brew install romkatv/powerlevel10k/powerlevel10k
   brew install zsh-autosuggestions
-elif [ "$OS_NAME" == "Linux" ] && [ -e "/etc/lsb-release" ]; then
+elif grep -q "debian" /etc/os-release; then
   echo "📦 Installing packages using apt..."
+  apt udate
   apt install -y bat
   apt install -y exa
   apt install -y romkatv/powerlevel10k/powerlevel10k
